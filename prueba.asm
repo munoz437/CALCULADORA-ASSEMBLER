@@ -213,7 +213,82 @@ SUB:
     
     JMP EXIT_P  
        
+  DIV:
+    LEA DX,MSG6
+    MOV AH,9
+    INT 21H
     
+    
+    MOV AH,1
+    INT 21H
+    SUB AL,30H
+    MOV NUM1,AL
+    
+    
+    LEA DX,MSG7
+    MOV AH,9
+    INT 21H 
+    
+    
+    MOV AH,1
+    INT 21H
+    SUB AL,30H
+    MOV NUM2,AL
+    
+    MOV CL,NUM1
+    MOV CH,00
+    MOV AX,CX  
+    
+    DIV NUM2
+    MOV RESULT,AL
+    MOV AH, 00
+    AAD  
+    
+    
+    ADD AH,30H
+    ADD AL,30H
+    
+    
+    MOV BX,AX 
+    
+    
+    LEA DX,MSG8
+    MOV AH,9
+    INT 21H 
+    
+    MOV AH,2
+    MOV DL,BH
+    INT 21H
+    
+    MOV AH,2
+    MOV DL,BL
+    INT 21H
+    
+    
+    ;LEA DX,MSG
+    ;MOV AH,9
+    ;INT 21H 
+    
+    JMP EXIT_P
+    
+    EXIT_P:
+    
+        LEA DX,MSG
+        MOV AH,9
+        INT 21H  
+  
+    
+   
+         
+        
+    EXIT:
+    
+    MOV AH,4CH
+    INT 21H
+    MAIN ENDP
+END MAIN
+
+ret
                       
                       
                               
